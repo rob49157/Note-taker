@@ -1,15 +1,27 @@
 const express = require('express');
+const bodyparser =require(`body-parser`)
+const router =express.Router.router()
 const path = require('path');
 const app = express();
 const PORT = 3001;
 const html = require(`./public/index.html`)
+const notes= require(`./public/notes.html`)
+const notetaker = require('./public/js/index.js');
 // const { clog } = require('./middleware/clog');
-// const notetaker = require('./public/js/index.js');
 
 
-// fetch respond form website.GET
+// listen
+app.listen(3001,()=>{
+    console.log(`start on port 3001`)
+})
 
-app.get(html,(req,res)=>{
+// route the GET data
+
+router.get(`./`,(req,res)=>{
+    res.sendFile(html)
+})
+
+app.get(notes,(req,res)=>{
     res.json(html)
 })
 
@@ -33,6 +45,6 @@ app.listen(PORT, () => {
 
 // POST data on server
 
-app.post(html,(req,res)=>{
+app.post(notes,(req,res)=>{
     res
 })
