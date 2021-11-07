@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyparser =require(`body-parser`)
-const router =express.Router.router()
+var http= require(`http`)
+const router =express.Router()
 const path = require('path');
 const app = express();
 const PORT = 3001;
@@ -9,42 +10,48 @@ const notes= require(`./public/notes.html`)
 const notetaker = require('./public/js/index.js');
 // const { clog } = require('./middleware/clog');
 
-
-// listen
-app.listen(3001,()=>{
-    console.log(`start on port 3001`)
-})
-
-// route the GET data
-
-router.get(`./`,(req,res)=>{
-    res.sendFile(html)
-})
-
-app.get(notes,(req,res)=>{
-    res.json(html)
-})
+// create server
+http.createServer(function(req,res){
+  res.write(`hello world`)
+  res.end()
+}).listen(3001);
 
 
-// handle data parsing
+// // listen
+// app.listen(3001,()=>{
+//     console.log(`start on port 3001`)
+// })
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// // route the GET data
 
-app.use(express.static('public'));
+// router.get(`./`,(req,res)=>{
+//     res.sendFile(html)
+// })
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+// app.get(notes,(req,res)=>{
+//     res.json(html)
+// })
 
-app.get('/api/pets', (req, res) => res.json(petData));
 
-app.listen(PORT, () => {
-  console.log(`Example app listening at http://localhost:${PORT}`);
-});
+// // handle data parsing
 
-// POST data on server
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 
-app.post(notes,(req,res)=>{
-    res
-})
+// app.use(express.static('public'));
+
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'index.html'));
+// });
+
+// app.get('/api/pets', (req, res) => res.json(petData));
+
+// app.listen(PORT, () => {
+//   console.log(`Example app listening at http://localhost:${PORT}`);
+// });
+
+// // POST data on server
+
+// app.post(notes,(req,res)=>{
+//     res
+// })
