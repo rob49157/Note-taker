@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyparser =require(`body-parser`)
 var http= require(`http`)
+var fs= require(`fs`)
+var url=require(`url`)
 const router =express.Router()
 const path = require('path');
 const app = express();
@@ -12,8 +14,12 @@ const notetaker = require('./public/js/index.js');
 
 // create server
 http.createServer(function(req,res){
-  res.write(`hello world`)
-  res.end()
+  fs.readFile(notes,function(err,data){
+    res.write(data)
+    return res.end()
+
+  })
+  
 }).listen(3001);
 
 
