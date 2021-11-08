@@ -9,11 +9,11 @@ const PORT = 3000;
 
 
 
-// create server
-http.createServer(function(req,res){
-  res.write(`hello note taker`)
-  res.end()
-}).listen(3000);
+ // create server
+// http.createServer(function(req,res){
+//   res.write(`hello note taker`)
+//   res.end()
+// }).listen(3000);
 
 app.use(express.static('public'));
 
