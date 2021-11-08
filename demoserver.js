@@ -9,7 +9,7 @@ const PORT = 3000;
 
 
 
- 
+// middleware 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use("/static", express.static('./static/'));
@@ -38,11 +38,14 @@ router.get("/api/notes", async function(req, res) {
 })
 
 // POST 
-app.post("./develop/db/de.json",(req,res)=>{
+app.post("/api/notes",(req,res)=>{
+  const fs = require('fs')
+  writepath = 'develop/db/de.json'
   var title = req.body.note-title
   var notes =req.body.note-textarea
   console.log( 'Title:' +title+ 'Notes:'+ notes)
   res.end('yes')
+  fs.appendFileSync(writepath,`${process.env[2]}`,(err)=> err ? console.log(err):console.log('commit log'))
 })
 
 // router
