@@ -9,12 +9,9 @@ const PORT = 3000;
 
 
 
- // create server
-// http.createServer(function(req,res){
-//   res.write(`hello note taker`)
-//   res.end()
-// }).listen(3000);
-
+ 
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
 app.use("/static", express.static('./static/'));
 
 
@@ -38,6 +35,14 @@ router.get("/api/notes", async function(req, res) {
     jsonData = JSON.parse(data); 
     res.send(jsonData)
   });
+})
+
+// POST 
+app.post("./develop/db/de.json",(req,res)=>{
+  var title = req.body.note-title
+  var notes =req.body.note-textarea
+  console.log( 'Title:' +title+ 'Notes:'+ notes)
+  res.end('yes')
 })
 
 // router
