@@ -3,8 +3,10 @@ const bodyparser =require(`body-parser`)
 var http= require(`http`)
 const router =express.Router()
 const path = require('path');
+const { json } = require('express');
 const app = express();
 const PORT = 3000;
+
 // const html = require("/a")
 // const notes= require(`notes.html`)
 // const notetaker = require('./assets/js/index.js');
@@ -14,7 +16,7 @@ const PORT = 3000;
 http.createServer(function(req,res){
   res.write(`hello note taker`)
   res.end()
-}).listen(3001);
+}).listen(3000);
 
 
 // GET
@@ -22,8 +24,21 @@ router.get("/",function(req,res){
   res.sendFile(path.join(__dirname + "/develop/public/index.html"))
 })
 
-router.get("/notes", function(req,res){
+router.get("/notes", async function(req,res){
   res.sendFile(path.join(__dirname + "/develop/public/notes.html"))
+})
+
+router.get("/api/notes", async function(req, res) {
+  const fs = require('fs')
+  filepath = 'develop/db/de.json'
+  jsonData = ''
+  await fs.readFile(filepath, 'utf8', function (err, data) {
+    if (err) {
+      console.log(err);
+    }
+    jsonData = JSON.parse(data); 
+    res.send(jsonData)
+  });
 })
 
 // router
