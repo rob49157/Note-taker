@@ -15,7 +15,8 @@ const PORT = 3000;
 //   res.end()
 // }).listen(3000);
 
-app.use(express.static('public'));
+app.use("/static", express.static('./static/'));
+
 
 // GET
 router.get("/",function(req,res){
