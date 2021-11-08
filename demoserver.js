@@ -7,10 +7,7 @@ const { json } = require('express');
 const app = express();
 const PORT = 3000;
 
-// const html = require("/a")
-// const notes= require(`notes.html`)
-// const notetaker = require('./assets/js/index.js');
-// const { clog } = require('./middleware/clog');
+
 
 // create server
 http.createServer(function(req,res){
@@ -18,6 +15,7 @@ http.createServer(function(req,res){
   res.end()
 }).listen(3000);
 
+app.use('/public', express.static('assets'))
 
 // GET
 router.get("/",function(req,res){
