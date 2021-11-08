@@ -15,7 +15,7 @@ http.createServer(function(req,res){
   res.end()
 }).listen(3000);
 
-app.use('/public', express.static('assets'))
+app.use(express.static('public'));
 
 // GET
 router.get("/",function(req,res){
