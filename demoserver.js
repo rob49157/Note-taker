@@ -5,7 +5,8 @@ const router =express.Router()
 const path = require('path');
 const { json } = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5500
+var uuid = require('./helper/uuid');
 
 
 
@@ -50,6 +51,7 @@ app.post("/api/notes",(req,res)=>{
   var text =req.body.text
   // !!!!!!!!!!Add an unique id generator to json "id": uniqueID
   let new_note = {
+    "id": uuid(),
     "title":title,
     "text":text
   }
