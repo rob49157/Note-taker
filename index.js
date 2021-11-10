@@ -5,7 +5,7 @@ const router =express.Router()
 const path = require('path');
 const { json } = require('express');
 const app = express();
-const PORT = process.env.PORT || 5500
+const PORT = process.env.PORT || 3000;
 var uuid = require('./helper/uuid');
 
 
